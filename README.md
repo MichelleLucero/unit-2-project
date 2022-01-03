@@ -17,4 +17,20 @@ Restaurant review App, which allows users to see reviews of a restaurant or add 
 - As a user I should be able to see restaurant details
 
 ## Entity Relationship Diagram
+
 ![image](https://user-images.githubusercontent.com/31500626/147986739-982dbfac-f9af-4cbf-a7a2-4172b4d4116c.png)
+
+## Endpoints
+
+| Request Type | URL                                                     | Functionality                                                       |
+| :----------- | :------------------------------------------------------ | :------------------------------------------------------------------ |
+| GET          | /api/categories/                                        | get all the categories                                              |
+| POST         | /api/categoies/                                         | create a category                                                   |
+| GET          | /api/categories/{categoryId}                            | get a specific category                                             |
+| PUT          | /api/categories/{categoryId}                            | update a specific category                                          |
+| DELETE       | /api/categories/{categoryId}                            | delete a specific category                                          |
+| GET          | /api/categories/{categoryId}/restaurants                | List all restaurants in category                                    |
+| POST         | /api/categories/{categoryId}/restaurants                | Creates a new restaurant in the given category                      |
+| GET          | /api/categories/{categoryId}/restaurants/{restaurantId} | Gets a single restaurant with the given restaurantId and CategoryId |
+| PUT          | /api/categories/{categoryId}/restaurants/{restaurantId} | Updates a restaurant in the given category                          |
+| DELETE       | /api/categories/{categoryId}/restaurants/{restaurantId} | Deletes a restaurant in the given category                          |
