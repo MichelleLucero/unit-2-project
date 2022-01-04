@@ -52,8 +52,8 @@ Our MVP is a will have four models: categories, restaurants, reviews and users. 
 
 ## Stretch Goals
 
-- Allowing a restaurant to have multiple categories
-- Adding authentication using JWT
+- Allow a restaurant to have multiple categories
+- Add authentication using JWT
 - Apply google maps API or openstreetmap
 - Allow restaurant owners to respond to reviews
 - Allow users to post images in their reviews
