@@ -6,15 +6,15 @@ Restaurant review App, which allows users to see reviews of a restaurant or add 
 
 ## User Stories
 
-- As a user I should be able to find a restaurant by category
-- As a user I should be able to find a restaurant by name
-- As a user I should be able to create a new review
-- As a user, I should be able to see my review(s)
+- As a user, I should be able to find a restaurant by category, name, or address
+- As a user, I should be able to create a new review for a specific restaurant
+- As a user, I should be able to see all the review(s) I have created 
 - As a user, I should be able to update my review(s)
 - As a user, I should be able to delete my review(s)
-- As a user I should be able to see reviews for a specific restaurant
-- As a user I should be able to rate a restaurant from 1 - 5, 5 being highest score
-- As a user I should be able to see restaurant details
+- As a user, I should be able to see reviews for a specific restaurant
+- As a user, I should be able to rate a restaurant from 1 - 5, 5 being highest score
+- As a user, I should be able to update my rating for a restaurant
+- As a user, I should be able to see restaurant details
 
 ## Entity Relationship Diagram
 
