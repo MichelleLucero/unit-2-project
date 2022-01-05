@@ -4,7 +4,9 @@ import com.restaurant.restaurantapp.controller.CategoryController;
 import com.restaurant.restaurantapp.exception.InformationExistException;
 import com.restaurant.restaurantapp.exception.InformationNotFoundException;
 import com.restaurant.restaurantapp.model.Category;
+import com.restaurant.restaurantapp.model.Restaurant;
 import com.restaurant.restaurantapp.repository.CategoryRepository;
+import com.restaurant.restaurantapp.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -19,11 +22,18 @@ import java.util.logging.Logger;
 public class CategoryService {
 
     private CategoryRepository categoryRepository;
+    private RestaurantRepository restaurantRepository;
+
     private static final Logger LOGGER = Logger.getLogger(CategoryService.class.getName());
 
     @Autowired
     public void setCategoryRepository(CategoryRepository categoryRepository){
         this.categoryRepository = categoryRepository;
+    }
+
+    @Autowired
+    public void setRestaurantRepository(RestaurantRepository restaurantRepository){
+        this.restaurantRepository = restaurantRepository;
     }
 
     public List<Category> getCategories(){
@@ -82,4 +92,25 @@ public class CategoryService {
             throw new InformationNotFoundException("category with id " + categoryId + " not found");
         }
     }
+
+    public Restaurant createCategoryRestaurant(Long categoryId, Restaurant restaurantObject){
+        LOGGER.info("calling createCategoryRestaurant method from service");
+        try{
+           Optional category = categoryRepository.findById(categoryId);
+           restaurantObject.setCategory((Category) category.get());
+           return restaurantRepository.save(restaurantObject);
+        } catch(NoSuchElementException e) {
+            throw new InformationNotFoundException("category with id " + categoryId + " not found");
+        }
+    }
+
+//    public Restaurant getCategoryRestaurant( Long categoryId, Long restaurantId){
+//        LOGGER.info("calling getCategoryRestaurant from service");
+//        Optional<Category> category = categoryRepository.findById(categoryId);
+//        if(category.isPresent()){
+//
+//        } else {
+//            throw new InformationNotFoundException("category with id " + categoryId + " not found");
+//        }
+//    }
 }
