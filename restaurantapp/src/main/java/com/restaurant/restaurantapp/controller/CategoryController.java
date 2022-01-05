@@ -72,14 +72,14 @@ public class CategoryController {
     }
 
     //  http://localhost:9092/api/categories/1/restaurants/1
-//    @GetMapping("/categories/{categoryId}/restaurants/{restaurantId}")
-//    public Restaurant getCategoryRestaurant(
-//            @PathVariable(value = "categoryId") Long categoryId,
-//            @PathVariable(value = "restaurantId") Long restaurantId
-//    ){
-//        LOGGER.info("calling getCategoryRestaurant from controller");
-//        return categoryService.getCategoryRestaurant(categoryId, restaurantId);
-//    }
+    @GetMapping("/categories/{categoryId}/restaurants/{restaurantId}")
+    public Restaurant getCategoryRestaurant(
+            @PathVariable(value = "categoryId") Long categoryId,
+            @PathVariable(value = "restaurantId") Long restaurantId
+    ){
+        LOGGER.info("calling getCategoryRestaurant from controller");
+        return categoryService.getCategoryRestaurant(categoryId, restaurantId);
+    }
 
 }
 

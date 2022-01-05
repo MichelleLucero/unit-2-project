@@ -104,13 +104,19 @@ public class CategoryService {
         }
     }
 
-//    public Restaurant getCategoryRestaurant( Long categoryId, Long restaurantId){
-//        LOGGER.info("calling getCategoryRestaurant from service");
-//        Optional<Category> category = categoryRepository.findById(categoryId);
-//        if(category.isPresent()){
-//
-//        } else {
-//            throw new InformationNotFoundException("category with id " + categoryId + " not found");
-//        }
-//    }
+    public Restaurant getCategoryRestaurant( Long categoryId, Long restaurantId){
+        LOGGER.info("calling getCategoryRestaurant from service");
+        Optional<Category> category = categoryRepository.findById(categoryId);
+        if(category.isPresent()){
+            Optional<Restaurant> restaurant = restaurantRepository.findByCategoryId(categoryId).stream().filter(
+                    p-> p.getId().equals(restaurantId)).findFirst();
+            if(restaurant.isEmpty()){
+                throw new InformationNotFoundException("category with id " + restaurantId + " not found");
+            } else {
+                return restaurant.get();
+            }
+        } else {
+            throw new InformationNotFoundException("category with id " + categoryId + " not found");
+        }
+    }
 }
