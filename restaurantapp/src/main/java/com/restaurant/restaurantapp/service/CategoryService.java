@@ -93,6 +93,7 @@ public class CategoryService {
         }
     }
 
+//  todo: FIX THIS SO UNIQUE
     public Restaurant createCategoryRestaurant(Long categoryId, Restaurant restaurantObject){
         LOGGER.info("calling createCategoryRestaurant method from service");
         try{
@@ -119,4 +120,63 @@ public class CategoryService {
             throw new InformationNotFoundException("category with id " + categoryId + " not found");
         }
     }
+
+    public List<Restaurant> getCategoryRestaurants(Long categoryId){
+        LOGGER.info("calling getCategoryRestaurants");
+        Optional<Category> category = categoryRepository.findById(categoryId);
+        if(category.isPresent()){
+            List<Restaurant> restaurantList = category.get().getRestaurantList();
+            if(restaurantList.isEmpty()){
+                throw new InformationNotFoundException("category with id " + categoryId + "does not have recipes");
+            }
+            return restaurantList;
+        } else {
+            throw new InformationNotFoundException("category with id " + categoryId + " not found");
+        }
+    }
+
+    public Restaurant updateCategoryRestaurant(Long categoryId, Long restaurantId, Restaurant restaurantObject){
+        LOGGER.info("calling updateCategoryRestaurant from service");
+        Optional<Category> category = categoryRepository.findById(categoryId);
+        if(category.isPresent()){
+            Optional<Restaurant> restaurant = restaurantRepository.findByCategoryId(categoryId).stream().filter(
+                    p -> p.getId().equals(restaurantId)).findFirst();
+            if(restaurant.isEmpty()){
+                throw new InformationNotFoundException("restaurant with id " + restaurantId + " not found");
+            }else {
+                //                update
+                if(restaurant.get().getName().equals(restaurantObject.getName())){
+                    throw new InformationExistException("restaurant " + restaurant.get().getName() + " already exists");
+                }
+
+                restaurant.get().setName(restaurantObject.getName());
+                restaurant.get().setStreet(restaurantObject.getStreet());
+                restaurant.get().setCity(restaurantObject.getCity());
+                restaurant.get().setState(restaurantObject.getState());
+                restaurant.get().setZipCode(restaurantObject.getZipCode());
+                return restaurantRepository.save(restaurant.get());
+            }
+
+        } else {
+            throw new InformationNotFoundException("category with id " + categoryId + " not found");
+        }
+    }
+
+    public Restaurant deleteCategoryRestaurant(Long categoryId, Long restaurantId){
+        LOGGER.info("calling deleteCategoryRestaurant from service");
+        Optional<Category> category = categoryRepository.findById(categoryId);
+        if(category.isPresent()){
+            Optional<Restaurant> restaurant = restaurantRepository.findByCategoryId(categoryId).stream().filter(
+                    p -> p.getId().equals(restaurantId)).findFirst();
+            if(restaurant.isEmpty()){
+                throw new InformationNotFoundException("restaurant with id " + restaurantId + " not found");
+            }
+//            Delete
+            restaurantRepository.deleteById(restaurantId);
+            return restaurant.get();
+        }else {
+            throw new InformationNotFoundException("category with id " + categoryId + " not found");
+        }
+    }
+
 }
