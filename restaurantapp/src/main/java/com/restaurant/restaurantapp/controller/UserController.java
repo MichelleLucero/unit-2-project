@@ -2,6 +2,7 @@ package com.restaurant.restaurantapp.controller;
 
 
 import com.restaurant.restaurantapp.model.User;
+import com.restaurant.restaurantapp.model.User;
 import com.restaurant.restaurantapp.repository.ReviewRepository;
 import com.restaurant.restaurantapp.repository.UserRepository;
 import com.restaurant.restaurantapp.service.UserService;
@@ -43,6 +44,13 @@ public class UserController {
     public User createUser(@RequestBody User userObject){
         LOGGER.info("calling createUser method from controller");
         return userService.createUser(userObject);
+    }
+
+    // http://localhost:9092/api/users/1
+    @PutMapping(path = "/users/{userId}")
+    public User updateUser(@PathVariable(value = "userId") Long userId, @RequestBody User userObject) {
+        LOGGER.info("calling updateUser method from service");
+        return userService.updateUser(userId, userObject);
     }
 
 }

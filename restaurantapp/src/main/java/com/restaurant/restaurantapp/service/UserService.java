@@ -3,6 +3,7 @@ package com.restaurant.restaurantapp.service;
 import com.restaurant.restaurantapp.exception.InformationExistException;
 import com.restaurant.restaurantapp.exception.InformationNotFoundException;
 import com.restaurant.restaurantapp.model.User;
+import com.restaurant.restaurantapp.model.User;
 import com.restaurant.restaurantapp.model.Review;
 import com.restaurant.restaurantapp.model.User;
 import com.restaurant.restaurantapp.repository.ReviewRepository;
@@ -57,4 +58,24 @@ public class UserService {
         }
     }
 
+    public User updateUser(Long userId, User userObject) {
+        LOGGER.info("calling updateUser method from controller");
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            User userDuplicate = userRepository.findByEmailAndIdIsNot(userObject.getEmail(), userId);
+            if (userDuplicate == null) {
+                User updateUser = userRepository.findById(userId).get();
+                updateUser.setFirstName(userObject.getFirstName());
+                updateUser.setLastName(userObject.getLastName());
+                updateUser.setEmail(userObject.getEmail());
+                return userRepository.save(updateUser);
+
+            } else {
+                throw new InformationExistException("user with name " + userObject.getEmail() + " already exists.");
+            }
+        } else {
+            throw new InformationNotFoundException("User with Id " + userId + " not found.");
+        }
+
+    }
 }
