@@ -3,6 +3,7 @@ package com.restaurant.restaurantapp.controller;
 
 import com.restaurant.restaurantapp.model.User;
 import com.restaurant.restaurantapp.model.User;
+import com.restaurant.restaurantapp.model.User;
 import com.restaurant.restaurantapp.repository.ReviewRepository;
 import com.restaurant.restaurantapp.repository.UserRepository;
 import com.restaurant.restaurantapp.service.UserService;
@@ -53,4 +54,10 @@ public class UserController {
         return userService.updateUser(userId, userObject);
     }
 
+    //  http://localhost:9092/api/users/1
+    @DeleteMapping("/users/{userId}")
+    public Optional<User> deleteUser(@PathVariable(value = "userId") Long userId) {
+        LOGGER.info("calling deleteUser method from service");
+        return userService.deleteUser(userId);
+    }
 }

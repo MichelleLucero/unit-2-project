@@ -2,9 +2,8 @@ package com.restaurant.restaurantapp.service;
 
 import com.restaurant.restaurantapp.exception.InformationExistException;
 import com.restaurant.restaurantapp.exception.InformationNotFoundException;
+import com.restaurant.restaurantapp.model.*;
 import com.restaurant.restaurantapp.model.User;
-import com.restaurant.restaurantapp.model.User;
-import com.restaurant.restaurantapp.model.Review;
 import com.restaurant.restaurantapp.model.User;
 import com.restaurant.restaurantapp.repository.ReviewRepository;
 import com.restaurant.restaurantapp.repository.UserRepository;
@@ -76,6 +75,16 @@ public class UserService {
         } else {
             throw new InformationNotFoundException("User with Id " + userId + " not found.");
         }
+    }
 
+    public Optional<User> deleteUser(Long userId) {
+        LOGGER.info("calling deleteUser method from controller");
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            userRepository.deleteById(userId);
+            return user;
+        } else {
+            throw new InformationNotFoundException("user with id " + userId + " not found");
+        }
     }
 }
