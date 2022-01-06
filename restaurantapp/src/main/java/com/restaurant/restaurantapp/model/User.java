@@ -1,4 +1,5 @@
 package com.restaurant.restaurantapp.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -22,7 +23,7 @@ public class User {
     public User() {
     }
 
-    @OneToMany(mappedBy = "review", orphanRemoval = true)
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Review> reviewList;
 
@@ -50,7 +51,6 @@ public class User {
         this.lastName = lastName;
     }
 
-
     public List<Review> getReviewList() {
         return reviewList;
     }
@@ -58,4 +58,6 @@ public class User {
     public void setReviewList(List<Review> reviewList) {
         this.reviewList = reviewList;
     }
+
+
 }
