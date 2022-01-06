@@ -24,8 +24,8 @@ Restaurant review App, which allows users to see reviews of a restaurant or add 
 
 | Request Type | URL                                                                        | Functionality                                                              |
 | :----------- | :------------------------------------------------------------------------- | :------------------------------------------------------------------------- |
-| GET          | /api/categories/                                                           | get all the categories                                                     |
-| POST         | /api/categories/                                                           | create a category                                                          |
+| GET          | /api/categories                                                            | get all the categories                                                     |
+| POST         | /api/categories                                                            | create a category                                                          |
 | GET          | /api/categories/{categoryId}                                               | get a specific category                                                    |
 | PUT          | /api/categories/{categoryId}                                               | update a specific category                                                 |
 | DELETE       | /api/categories/{categoryId}                                               | delete a specific category                                                 |
@@ -37,8 +37,8 @@ Restaurant review App, which allows users to see reviews of a restaurant or add 
 | GET          | /api/categories/{categoryId}/restaurants/{restaurantId}/reviews            | List all reviews in restaurant                                             |
 | POST         | /api/categories/{categoryId}/restaurants/{restaurantId}/reviews            | Creates a new review in the given restaurant                               |
 | GET          | /api/categories/{categoryId}/restaurants/{restaurantId}/reviews/{reviewId} | Gets a single review with the given restaurantId, categoryId, and reviewId |
-| GET          | /api/users/                                                                | Gets all the users                                                         |
-| POST         | /api/users/                                                                | Create a user                                                              |
+| GET          | /api/users                                                                 | Gets all the users                                                         |
+| POST         | /api/users                                                                 | Create a user                                                              |
 | GET          | /api/users/{userId}                                                        | Get a specific user                                                        |
 | PUT          | /api/users/{userId}                                                        | Update a specific user                                                     |
 | DELETE       | /api/users/{userId}                                                        | Delete a specific user                                                     |
