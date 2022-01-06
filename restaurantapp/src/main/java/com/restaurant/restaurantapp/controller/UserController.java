@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 @RestController
 @RequestMapping("/api")
@@ -30,10 +31,18 @@ public class UserController {
         return userService.getUsers();
     }
 
+    // http://localhost:9092/api/users/1
+    @GetMapping(path = "/users/{userId}")
+    public Optional getUser(@PathVariable Long userId) {
+        LOGGER.info("calling getUser method from controller");
+        return userService.getUser(userId);
+    }
+
     // http://localhost:9092/api/users
     @PostMapping(path = "/users")
     public User createUser(@RequestBody User userObject){
         LOGGER.info("calling createUser method from controller");
         return userService.createUser(userObject);
     }
+
 }

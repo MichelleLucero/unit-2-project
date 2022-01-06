@@ -1,6 +1,7 @@
 package com.restaurant.restaurantapp.service;
 
 import com.restaurant.restaurantapp.exception.InformationExistException;
+import com.restaurant.restaurantapp.exception.InformationNotFoundException;
 import com.restaurant.restaurantapp.model.User;
 import com.restaurant.restaurantapp.model.Review;
 import com.restaurant.restaurantapp.model.User;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -33,6 +35,16 @@ public class UserService {
     public List<User> getUsers(){
         LOGGER.info("Calling getUsers method from service");
         return userRepository.findAll();
+    }
+
+    public Optional getUser(Long userId) {
+        LOGGER.info("calling getUser method from controller");
+        Optional user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            return user;
+        } else {
+            throw new InformationNotFoundException("user with id " + userId + " not found");
+        }
     }
 
     public User createUser(User userObject) {
