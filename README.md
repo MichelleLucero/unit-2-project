@@ -18,7 +18,8 @@ Restaurant review App, which allows users to see reviews of a restaurant or add 
 
 ## Entity Relationship Diagram
 
-![image](https://raw.githubusercontent.com/MichelleLucero/unit-2-project/main/ERD_Planning/Restaurant%20Review%20App%20-%20Database%20ER%20diagram%20(1).jpeg)
+![Restaurant Review App - Database ER diagram (1)](https://user-images.githubusercontent.com/94083595/148432035-68db7977-7105-4987-9ac0-83fd3e40174b.png)
+
 
 ## Endpoints
 
