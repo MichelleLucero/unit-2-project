@@ -1,5 +1,7 @@
 package com.restaurant.restaurantapp.service;
 
+import com.restaurant.restaurantapp.exception.InformationExistException;
+import com.restaurant.restaurantapp.model.User;
 import com.restaurant.restaurantapp.model.Review;
 import com.restaurant.restaurantapp.model.User;
 import com.restaurant.restaurantapp.repository.ReviewRepository;
@@ -33,5 +35,14 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User createUser(User userObject) {
+        LOGGER.info("calling createUser from controller");
+        User user = userRepository.findByEmail(userObject.getEmail());
+        if (user != null) {
+            throw new InformationExistException("user with email " + user.getEmail() + " already exists");
+        } else {
+            return userRepository.save(userObject);
+        }
+    }
 
 }

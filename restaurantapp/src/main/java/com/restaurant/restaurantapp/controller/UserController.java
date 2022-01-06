@@ -31,9 +31,9 @@ public class UserController {
     }
 
     // http://localhost:9092/api/users
-//    @PostMapping(path = "/users")
-//    public User createUser(@RequestBody User userObject){
-//        LOGGER.info("calling createUser method from controller");
-//        return userService.createUser(userObject);
-//    }
+    @PostMapping(path = "/users")
+    public User createUser(@RequestBody User userObject){
+        LOGGER.info("calling createUser method from controller");
+        return userService.createUser(userObject);
+    }
 }

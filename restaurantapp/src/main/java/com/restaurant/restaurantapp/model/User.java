@@ -20,6 +20,9 @@ public class User {
     @Column
     private String lastName;
 
+    @Column
+    private String email;
+
     public User() {
     }
 
@@ -49,6 +52,14 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public List<Review> getReviewList() {
