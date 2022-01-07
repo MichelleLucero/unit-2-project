@@ -40,7 +40,7 @@ Restaurant review App, which allows users to see reviews of a restaurant or add 
 | PUT          | /api/restaurants/{restaurantId}                             | Updates a restaurant                                                |
 | DELETE       | /api/restaurants/{restaurantId}                             | Deletes a restaurant                                                |
 | GET          | /api/restaurants/{restaurantId}/reviews                     | List all reviews in restaurant                                      |
-| POST         | /api/restaurants/{restaurantId}/reviews/{userId}            | Creates a new review in the given restaurant                        |
+| POST         | /api/restaurants/{restaurantId}/reviews                     | Creates a new review in the given restaurant                        |
 | GET          | /api/restaurants/{restaurantId}/reviews/{reviewId}          | Gets a single review with the given restaurantId and reviewId       |
 | PUT          | /api/restaurants/{restaurantId}/reviews/{userId}/{reviewId} | Updates a review for a restaurant by a specific user and review     |
 | DELETE       | /api/restaurants/{restaurantId}/reviews/{userId}/{reviewId} | Deletes a review for a restaurant by a specific user and review     |
