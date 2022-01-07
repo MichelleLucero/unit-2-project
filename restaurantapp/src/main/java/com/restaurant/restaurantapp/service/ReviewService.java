@@ -102,7 +102,7 @@ public class ReviewService {
             reviewRepository.deleteById(reviewId);
             return review.get();
         } else {
-            throw new InformationNotFoundException("Either restaurant with id of " + restaurantId + "or review with id " + reviewId + " not found" );
+            throw new InformationNotFoundException("Either restaurant with id of " + restaurantId + " or review with id " + reviewId + " not found" );
         }
     }
 }
