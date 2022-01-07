@@ -17,11 +17,11 @@ public class RestaurantController {
     private static final Logger LOGGER = Logger.getLogger(RestaurantController.class.getName());
 
     @Autowired
-    public void setRestaurantService(RestaurantService restaurantService){
+    public void setRestaurantService(RestaurantService restaurantService) {
         this.restaurantService = restaurantService;
     }
 
-//    //  http://localhost:9092/api/categories/1/restaurants
+    //    //  http://localhost:9092/api/categories/1/restaurants
 //    @PostMapping("/categories/{categoryId}/restaurants")
 //    public Restaurant createCategoryRestaurant(
 //            @PathVariable(value = "categoryId") Long categoryId,
@@ -34,31 +34,29 @@ public class RestaurantController {
     @GetMapping("/restaurants/{restaurantId}")
     public Restaurant getRestaurant(
             @PathVariable(value = "restaurantId") Long restaurantId
-    ){
+    ) {
         LOGGER.info("calling getRestaurant from controller");
         return restaurantService.getRestaurant(restaurantId);
     }
 
     //    http://localhost:9092/api/restaurants
     @GetMapping("/restaurants")
-    public List<Restaurant> getRestaurants(){
+    public List<Restaurant> getRestaurants() {
         LOGGER.info("calling getRestaurant from controller");
         return restaurantService.getRestaurants();
     }
 
 
     @PutMapping("/restaurants/{restaurantId}")
-    public Restaurant updateRestaurant(@PathVariable(value = "restaurantId") Long restaurantId,
-                                               @RequestBody Restaurant restaurantObject){
+    public Restaurant updateRestaurant(@PathVariable(value = "restaurantId") Long restaurantId, @RequestBody Restaurant restaurantObject) {
         LOGGER.info("calling updateRestaurant from controller");
         return restaurantService.updateRestaurant(restaurantId, restaurantObject);
     }
-//
-//    @DeleteMapping("/categories/{categoryId}/restaurants/{restaurantId}")
-//    public Restaurant deleteCategoryRestaurant(@PathVariable(value = "categoryId") Long categoryId,
-//                                               @PathVariable(value = "restaurantId") Long restaurantId){
-//        LOGGER.info("calling deleteCategoryRestaurant from controller");
-//        return restaurantService.deleteCategoryRestaurant(categoryId, restaurantId);
-//    }
+
+    @DeleteMapping("/restaurants/{restaurantId}")
+    public Restaurant deleteRestaurant(@PathVariable(value = "restaurantId") Long restaurantId) {
+        LOGGER.info("calling deleteRestaurant from controller");
+        return restaurantService.deleteRestaurant(restaurantId);
+    }
 
 }
