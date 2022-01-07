@@ -77,20 +77,20 @@ public class ReviewService {
         }
     }
 
-    public Review updateRestaurantReview( Long restaurantId, Long reviewId, Long userId, Review reviewObject){
+    public Review updateRestaurantReview( Long restaurantId, Long reviewId, ReviewRequest reviewRequestObject){
         LOGGER.info("calling updateRestaurantReview from service");
         Optional<Restaurant> restaurant = restaurantRepository.findById(restaurantId);
-        Optional<User> user = userRepository.findById(userId);
+        Optional<User> user = userRepository.findById(reviewRequestObject.getUserId());
         Optional<Review> review = reviewRepository.findById(reviewId);
         if( restaurant.isPresent() && user.isPresent() && review.isPresent()){
             review.get().setRestaurant(restaurant.get());
-            review.get().setComment(reviewObject.getComment());
-            review.get().setRating(reviewObject.getRating());
+            review.get().setComment(reviewRequestObject.getComment());
+            review.get().setRating(reviewRequestObject.getRating());
             review.get().setUser(user.get());
             return reviewRepository.save(review.get());
 
         } else {
-            throw new InformationNotFoundException("Either restaurant with id of " + restaurantId + ", review with id " + reviewId + ", or user with id of " + userId + " not found");
+            throw new InformationNotFoundException("Either restaurant with id of " + restaurantId + " or review with id of " + reviewId +  " not found");
         }
     }
 

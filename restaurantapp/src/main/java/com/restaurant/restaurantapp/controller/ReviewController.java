@@ -42,13 +42,13 @@ public class ReviewController {
         return reviewService.getRestaurantReview(restaurantId, reviewId);
     }
 
-    @PutMapping("/restaurants/{restaurantId}/reviews/{userId}/{reviewId}")
+    //    http://localhost:9092/api/restaurants/1/reviews/1
+    @PutMapping("/restaurants/{restaurantId}/reviews/{reviewId}")
     public Review updateRestaurantReview(@PathVariable(value = "restaurantId") Long restaurantId,
-                                         @PathVariable(value = "userId") Long userId,
                                          @PathVariable(value = "reviewId") Long reviewId,
-                                         @RequestBody Review reviewObject){
+                                         @RequestBody ReviewRequest reviewRequestObject){
         LOGGER.info("calling updateRestaurantReview from controller");
-        return reviewService.updateRestaurantReview(restaurantId, userId,reviewId, reviewObject);
+        return reviewService.updateRestaurantReview(restaurantId, reviewId, reviewRequestObject);
     }
 
     @DeleteMapping("/restaurants/{restaurantId}/reviews/{userId}/{reviewId}")
