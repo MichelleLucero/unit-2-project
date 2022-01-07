@@ -5,6 +5,7 @@ import com.restaurant.restaurantapp.exception.InformationExistException;
 import com.restaurant.restaurantapp.exception.InformationNotFoundException;
 import com.restaurant.restaurantapp.model.Category;
 import com.restaurant.restaurantapp.model.Restaurant;
+import com.restaurant.restaurantapp.model.Review;
 import com.restaurant.restaurantapp.repository.CategoryRepository;
 import com.restaurant.restaurantapp.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -181,5 +182,6 @@ public class CategoryService {
             throw new InformationNotFoundException("category with id " + categoryId + " not found");
         }
     }
+
 
 }

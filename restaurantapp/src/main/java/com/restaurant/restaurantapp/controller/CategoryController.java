@@ -4,6 +4,7 @@ import com.restaurant.restaurantapp.exception.InformationExistException;
 import com.restaurant.restaurantapp.exception.InformationNotFoundException;
 import com.restaurant.restaurantapp.model.Category;
 import com.restaurant.restaurantapp.model.Restaurant;
+import com.restaurant.restaurantapp.model.Review;
 import com.restaurant.restaurantapp.repository.CategoryRepository;
 import com.restaurant.restaurantapp.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +104,8 @@ public class CategoryController {
         LOGGER.info("calling deleteCategoryRestaurant from controller");
         return categoryService.deleteCategoryRestaurant(categoryId, restaurantId);
     }
+
+
 
 }
 
