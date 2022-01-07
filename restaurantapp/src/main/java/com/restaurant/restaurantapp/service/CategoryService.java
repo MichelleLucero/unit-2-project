@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class CategoryService {
 
     private CategoryRepository categoryRepository;
-//    private RestaurantRepository restaurantRepository;
+    private RestaurantRepository restaurantRepository;
 
     private static final Logger LOGGER = Logger.getLogger(CategoryService.class.getName());
 
@@ -32,10 +32,10 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-//    @Autowired
-//    public void setRestaurantRepository(RestaurantRepository restaurantRepository) {
-//        this.restaurantRepository = restaurantRepository;
-//    }
+    @Autowired
+    public void setRestaurantRepository(RestaurantRepository restaurantRepository) {
+        this.restaurantRepository = restaurantRepository;
+    }
 
     public List<Category> getCategories() {
         LOGGER.info("calling getCategories method from service");
@@ -93,38 +93,38 @@ public class CategoryService {
         }
     }
 
-//    public Restaurant createCategoryRestaurant(Long categoryId, Restaurant restaurantObject) {
-//        LOGGER.info("calling createCategoryRestaurant method from service");
-//        Optional<Category> category = categoryRepository.findById(categoryId);
-//        if (category.isPresent()) {
-//            Restaurant restaurant = restaurantRepository.findByName(restaurantObject.getName());
-//            if (restaurant != null) {
-//                throw new InformationExistException("restaurant with name " + restaurant.getName() + " already exists");
-//            } else {
-//                restaurantObject.setCategory(category.get());
-//                return restaurantRepository.save(restaurantObject);
-//            }
-//        } else {
-//            throw new InformationNotFoundException("category with id " + categoryId + " does not exist.");
-//        }
-//    }
-//
-//    public Restaurant getCategoryRestaurant(Long categoryId, Long restaurantId) {
-//        LOGGER.info("calling getCategoryRestaurant from service");
-//        Optional<Category> category = categoryRepository.findById(categoryId);
-//        if (category.isPresent()) {
-//            Optional<Restaurant> restaurant = restaurantRepository.findByCategoryId(categoryId).stream().filter(
-//                    p -> p.getId().equals(restaurantId)).findFirst();
-//            if (restaurant.isEmpty()) {
-//                throw new InformationNotFoundException("category with id " + restaurantId + " not found");
-//            } else {
-//                return restaurant.get();
-//            }
-//        } else {
-//            throw new InformationNotFoundException("category with id " + categoryId + " not found");
-//        }
-//    }
-//
+    public Restaurant createCategoryRestaurant(Long categoryId, Restaurant restaurantObject) {
+        LOGGER.info("calling createCategoryRestaurant method from service");
+        Optional<Category> category = categoryRepository.findById(categoryId);
+        if (category.isPresent()) {
+            Restaurant restaurant = restaurantRepository.findByName(restaurantObject.getName());
+            if (restaurant != null) {
+                throw new InformationExistException("restaurant with name " + restaurant.getName() + " already exists");
+            } else {
+                restaurantObject.setCategory(category.get());
+                return restaurantRepository.save(restaurantObject);
+            }
+        } else {
+            throw new InformationNotFoundException("category with id " + categoryId + " does not exist.");
+        }
+    }
+
+    public Restaurant getCategoryRestaurant(Long categoryId, Long restaurantId) {
+        LOGGER.info("calling getCategoryRestaurant from service");
+        Optional<Category> category = categoryRepository.findById(categoryId);
+        if (category.isPresent()) {
+            Optional<Restaurant> restaurant = restaurantRepository.findByCategoryId(categoryId).stream().filter(
+                    p -> p.getId().equals(restaurantId)).findFirst();
+            if (restaurant.isEmpty()) {
+                throw new InformationNotFoundException("category with id " + restaurantId + " not found");
+            } else {
+                return restaurant.get();
+            }
+        } else {
+            throw new InformationNotFoundException("category with id " + categoryId + " not found");
+        }
+    }
+
     public List<Restaurant> getCategoryRestaurants(Long categoryId) {
         LOGGER.info("calling getCategoryRestaurants");
         Optional<Category> category = categoryRepository.findById(categoryId);

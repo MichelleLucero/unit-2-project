@@ -47,13 +47,12 @@ public class RestaurantController {
     }
 
 
-//    @PutMapping("/categories/{categoryId}/restaurants/{restaurantId}")
-//    public Restaurant updateCategoryRestaurant(@PathVariable(value = "categoryId") Long categoryId,
-//                                               @PathVariable(value = "restaurantId") Long restaurantId,
-//                                               @RequestBody Restaurant restaurantObject){
-//        LOGGER.info("calling updateCategoryRestaurant from controller");
-//        return restaurantService.updateCategoryRestaurant(categoryId, restaurantId, restaurantObject);
-//    }
+    @PutMapping("/restaurants/{restaurantId}")
+    public Restaurant updateRestaurant(@PathVariable(value = "restaurantId") Long restaurantId,
+                                               @RequestBody Restaurant restaurantObject){
+        LOGGER.info("calling updateRestaurant from controller");
+        return restaurantService.updateRestaurant(restaurantId, restaurantObject);
+    }
 //
 //    @DeleteMapping("/categories/{categoryId}/restaurants/{restaurantId}")
 //    public Restaurant deleteCategoryRestaurant(@PathVariable(value = "categoryId") Long categoryId,
