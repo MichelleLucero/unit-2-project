@@ -4,7 +4,20 @@
 
 Restaurant review App, which allows users to see reviews of a restaurant or add a review to a restaurant.
 
-## User Stories
+## Tech Stack
+* Spring 
+* PostgreSQL
+* Maven
+
+## Planning
+### Approach
+
+Once our team selected to create a back-end for a restaurant review app, we proceeded to create user stories. We informally developed our plan of action, which included pair programming and managing git workflow. Then, we created an Entity Relationship Diagram (ERD) of our database to include categories, restaurants, reviews, and users. 
+Once we finished drafting our endpoints based on REST conventions, we created a new Spring project with the models and relationships defined in the ERD.
+We then implemented the endpoints using Controllers, Services, and Repositories.
+After completing our endpoints, we tested them using Postman to verify that we obtained the expected results. Finally, we restructured our code to adhere to the MVC design pattern.    
+
+### User Stories
 
 - As a user, I should be able to find a restaurant by category, name, or address
 - As a user, I should be able to create a new review for a specific restaurant
@@ -16,14 +29,14 @@ Restaurant review App, which allows users to see reviews of a restaurant or add 
 - As a user, I should be able to update my rating for a restaurant
 - As a user, I should be able to see restaurant details
 
-## Entity Relationship Diagram
+### Entity Relationship Diagram
 
 ![Restaurant Review App - Database ER diagram (2)](https://user-images.githubusercontent.com/94083595/148434095-c81b6d37-cc6d-4ec6-8f1c-42934b1a430a.png)
 
 
 
 
-## Endpoints
+### Endpoints
 
 | Request Type | URL                                                        | Functionality                                                       |
 | :----------- |:-----------------------------------------------------------|:--------------------------------------------------------------------|
@@ -63,3 +76,5 @@ Our MVP is a will have four models: categories, restaurants, reviews and users. 
 - Apply google maps API or openstreetmap
 - Allow restaurant owners to respond to reviews
 - Allow users to post images in their reviews
+
+
