@@ -21,15 +21,6 @@ public class RestaurantController {
         this.restaurantService = restaurantService;
     }
 
-    //    //  http://localhost:9092/api/categories/1/restaurants
-//    @PostMapping("/categories/{categoryId}/restaurants")
-//    public Restaurant createCategoryRestaurant(
-//            @PathVariable(value = "categoryId") Long categoryId,
-//            @RequestBody Restaurant restaurantObject){
-//        LOGGER.info("calling createCategoryRestaurant method from controller");
-//        return restaurantService.createCategoryRestaurant(categoryId, restaurantObject);
-//    }
-//
     //  http://localhost:9092/api/restaurants/1
     @GetMapping("/restaurants/{restaurantId}")
     public Restaurant getRestaurant(

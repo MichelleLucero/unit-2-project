@@ -30,22 +30,6 @@ public class RestaurantService {
         this.categoryRepository = categoryRepository;
     }
 
-    //    public Restaurant createCategoryRestaurant(Long categoryId, Restaurant restaurantObject) {
-//        LOGGER.info("calling createCategoryRestaurant method from service");
-//        Optional<Category> category = categoryRepository.findById(categoryId);
-//        if (category.isPresent()) {
-//            Restaurant restaurant = restaurantRepository.findByName(restaurantObject.getName());
-//            if (restaurant != null) {
-//                throw new InformationExistException("restaurant with name " + restaurant.getName() + " already exists");
-//            } else {
-//                restaurantObject.setCategory(category.get());
-//                return restaurantRepository.save(restaurantObject);
-//            }
-//        } else {
-//            throw new InformationNotFoundException("category with id " + categoryId + " does not exist.");
-//        }
-//    }
-//
     public Restaurant getRestaurant(Long restaurantId) {
         LOGGER.info("calling getCategoryRestaurant from service");
         Optional<Restaurant> restaurant = restaurantRepository.findById(restaurantId);
