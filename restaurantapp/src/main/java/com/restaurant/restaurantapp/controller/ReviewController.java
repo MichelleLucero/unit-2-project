@@ -41,12 +41,12 @@ public class ReviewController {
         return reviewService.getRestaurantReview(restaurantId, reviewId);
     }
 
-//    @PutMapping("/restaurants/{restaurantId}/reviews/{userId}/{reviewId}")
-//    public Review updateRestaurantReview(@PathVariable(value = "restaurantId") Long restaurantId,
-//                                         @PathVariable(value = "userId") Long userId,
-//                                         @PathVariable(value = "reviewId") Long reviewId,
-//                                         @RequestBody Review reviewObject){
-//        LOGGER.info("calling updateRestaurantReview from controller");
-//        return reviewService.updateRestaurantReview(restaurantId, userId,reviewId, reviewObject);
-//    }
+    @PutMapping("/restaurants/{restaurantId}/reviews/{userId}/{reviewId}")
+    public Review updateRestaurantReview(@PathVariable(value = "restaurantId") Long restaurantId,
+                                         @PathVariable(value = "userId") Long userId,
+                                         @PathVariable(value = "reviewId") Long reviewId,
+                                         @RequestBody Review reviewObject){
+        LOGGER.info("calling updateRestaurantReview from controller");
+        return reviewService.updateRestaurantReview(restaurantId, userId,reviewId, reviewObject);
+    }
 }
