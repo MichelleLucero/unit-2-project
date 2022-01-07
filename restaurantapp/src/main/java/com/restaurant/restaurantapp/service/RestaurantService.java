@@ -30,7 +30,7 @@ public class RestaurantService {
         this.categoryRepository = categoryRepository;
     }
 
-//    public Restaurant createCategoryRestaurant(Long categoryId, Restaurant restaurantObject) {
+    //    public Restaurant createCategoryRestaurant(Long categoryId, Restaurant restaurantObject) {
 //        LOGGER.info("calling createCategoryRestaurant method from service");
 //        Optional<Category> category = categoryRepository.findById(categoryId);
 //        if (category.isPresent()) {
@@ -46,21 +46,16 @@ public class RestaurantService {
 //        }
 //    }
 //
-//    public Restaurant getCategoryRestaurant(Long categoryId, Long restaurantId) {
-//        LOGGER.info("calling getCategoryRestaurant from service");
-//        Optional<Category> category = categoryRepository.findById(categoryId);
-//        if (category.isPresent()) {
-//            Optional<Restaurant> restaurant = restaurantRepository.findByCategoryId(categoryId).stream().filter(
-//                    p -> p.getId().equals(restaurantId)).findFirst();
-//            if (restaurant.isEmpty()) {
-//                throw new InformationNotFoundException("category with id " + restaurantId + " not found");
-//            } else {
-//                return restaurant.get();
-//            }
-//        } else {
-//            throw new InformationNotFoundException("category with id " + categoryId + " not found");
-//        }
-//    }
+    public Restaurant getRestaurant(Long restaurantId) {
+        LOGGER.info("calling getCategoryRestaurant from service");
+        Optional<Restaurant> restaurant = restaurantRepository.findById(restaurantId);
+        if (restaurant.isEmpty()) {
+            throw new InformationNotFoundException("restaurant with id " + restaurantId + " not found");
+        } else {
+            return restaurant.get();
+        }
+
+    }
 
     public List<Restaurant> getRestaurants() {
         LOGGER.info("calling getRestaurants from controller");

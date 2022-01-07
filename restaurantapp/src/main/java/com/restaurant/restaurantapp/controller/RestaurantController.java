@@ -30,15 +30,14 @@ public class RestaurantController {
 //        return restaurantService.createCategoryRestaurant(categoryId, restaurantObject);
 //    }
 //
-//    //  http://localhost:9092/api/categories/1/restaurants/1
-//    @GetMapping("/categories/{categoryId}/restaurants/{restaurantId}")
-//    public Restaurant getCategoryRestaurant(
-//            @PathVariable(value = "categoryId") Long categoryId,
-//            @PathVariable(value = "restaurantId") Long restaurantId
-//    ){
-//        LOGGER.info("calling getCategoryRestaurant from controller");
-//        return restaurantService.getCategoryRestaurant(categoryId, restaurantId);
-//    }
+    //  http://localhost:9092/api/restaurants/1
+    @GetMapping("/restaurants/{restaurantId}")
+    public Restaurant getRestaurant(
+            @PathVariable(value = "restaurantId") Long restaurantId
+    ){
+        LOGGER.info("calling getRestaurant from controller");
+        return restaurantService.getRestaurant(restaurantId);
+    }
 
     //    http://localhost:9092/api/restaurants
     @GetMapping("/restaurants")
