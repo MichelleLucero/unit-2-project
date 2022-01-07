@@ -33,6 +33,13 @@ public class Review {
     public Review() {
     }
 
+    public Review(String comment, int rating, Restaurant restaurant, User user) {
+        this.comment = comment;
+        this.rating = rating;
+        this.restaurant = restaurant;
+        this.user = user;
+    }
+
     public Long getId() {
         return id;
     }

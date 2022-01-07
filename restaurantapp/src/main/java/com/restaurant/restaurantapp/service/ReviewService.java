@@ -1,10 +1,7 @@
 package com.restaurant.restaurantapp.service;
 
 import com.restaurant.restaurantapp.exception.InformationNotFoundException;
-import com.restaurant.restaurantapp.model.Category;
-import com.restaurant.restaurantapp.model.Restaurant;
-import com.restaurant.restaurantapp.model.Review;
-import com.restaurant.restaurantapp.model.User;
+import com.restaurant.restaurantapp.model.*;
 import com.restaurant.restaurantapp.repository.RestaurantRepository;
 import com.restaurant.restaurantapp.repository.ReviewRepository;
 import com.restaurant.restaurantapp.repository.ReviewRepository;
@@ -48,13 +45,17 @@ public class ReviewService {
         return reviewRepository.findByRestaurantId(restaurantId);
     }
 
-    public Review createRestaurantReview( Long restaurantId, Long userId, Review reviewObject){
+    public Review createRestaurantReview( Long restaurantId, ReviewRequest reviewRequestObject){
         LOGGER.info("calling createRestaurantReview from controller");
         Optional<Restaurant> restaurant = restaurantRepository.findById(restaurantId);
-        Optional<User> user = userRepository.findById(userId);
+        Optional<User> user = userRepository.findById(reviewRequestObject.getUserId());
+
+        //          create reviewObject based on the contents inside reviewRequestObject
         if( restaurant.isPresent() && user.isPresent()){
-            reviewObject.setRestaurant(restaurant.get());
-            reviewObject.setUser(user.get());
+            Review reviewObject = new Review(reviewRequestObject.getComment(),
+                                             reviewRequestObject.getRating(),
+                                              restaurant.get(),
+                                                user.get());
             return reviewRepository.save(reviewObject);
         } else {
             throw new InformationNotFoundException("restaurant with id of " + restaurantId + " does not exist");
