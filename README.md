@@ -69,6 +69,10 @@ After completing our endpoints, we tested them using Postman to verify that we o
 
 Our MVP is a will have four models: categories, restaurants, reviews and users. The categories, restaurants, and users models will have all the CRUD endpoints created using REST conventions. When an invalid request is made, an error message will be displayed.
 
+## Major hurdles
+
+Since our team was not implementing user authentication, we ran into issues regarding how to identify which user is posting reviews. We solved this issue by using a helper class that allowed us to obtain user information.
+
 ## Stretch Goals
 
 - Allow a restaurant to have multiple categories
