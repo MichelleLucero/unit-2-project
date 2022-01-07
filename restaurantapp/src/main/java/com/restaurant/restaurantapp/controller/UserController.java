@@ -1,6 +1,7 @@
 package com.restaurant.restaurantapp.controller;
 
 
+import com.restaurant.restaurantapp.model.Review;
 import com.restaurant.restaurantapp.model.User;
 import com.restaurant.restaurantapp.model.User;
 import com.restaurant.restaurantapp.model.User;
@@ -59,5 +60,12 @@ public class UserController {
     public Optional<User> deleteUser(@PathVariable(value = "userId") Long userId) {
         LOGGER.info("calling deleteUser method from service");
         return userService.deleteUser(userId);
+    }
+
+    // http://localhost:9092/api/users/1/reviews
+    @GetMapping("/users/{userId}/reviews")
+    public List<Review> getUserReviews(@PathVariable(value = "userId") Long userId){
+        LOGGER.info("calling getUserReviews method from service");
+        return userService.getUserReviews(userId);
     }
 }
