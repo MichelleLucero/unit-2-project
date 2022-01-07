@@ -49,4 +49,12 @@ public class ReviewController {
         LOGGER.info("calling updateRestaurantReview from controller");
         return reviewService.updateRestaurantReview(restaurantId, userId,reviewId, reviewObject);
     }
+
+    @DeleteMapping("/restaurants/{restaurantId}/reviews/{userId}/{reviewId}")
+    public Review deleteRestaurantReview(@PathVariable(value = "restaurantId") Long restaurantId,
+                                         @PathVariable(value = "userId") Long userId,
+                                         @PathVariable(value = "reviewId") Long reviewId){
+        LOGGER.info("calling deleteRestaurantReview from controller");
+        return reviewService.deleteRestaurantReview(restaurantId, userId, reviewId);
+    }
 }

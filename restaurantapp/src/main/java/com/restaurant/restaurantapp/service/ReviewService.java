@@ -81,7 +81,7 @@ public class ReviewService {
         Optional<Restaurant> restaurant = restaurantRepository.findById(restaurantId);
         Optional<User> user = userRepository.findById(userId);
         Optional<Review> review = reviewRepository.findById(reviewId);
-        if( restaurant.isPresent() && review.isPresent()){
+        if( restaurant.isPresent() && user.isPresent() && review.isPresent()){
             review.get().setRestaurant(restaurant.get());
             review.get().setComment(reviewObject.getComment());
             review.get().setRating(reviewObject.getRating());
@@ -89,7 +89,20 @@ public class ReviewService {
             return reviewRepository.save(review.get());
 
         } else {
-            throw new InformationNotFoundException("Either restaurant with id of " + restaurantId + "or review with id " + reviewId + " not found");
+            throw new InformationNotFoundException("Either restaurant with id of " + restaurantId + ", review with id " + reviewId + ", or user with id of " + userId + " not found");
+        }
+    }
+
+    public Review deleteRestaurantReview(Long restaurantId, Long userId, Long reviewId){
+        LOGGER.info("calling deleteRestaurantReview from service");
+        Optional<Restaurant> restaurant = restaurantRepository.findById(restaurantId);
+        Optional<User> user = userRepository.findById(userId);
+        Optional<Review> review = reviewRepository.findById(reviewId);
+        if ( restaurant.isPresent() && user.isPresent() && review.isPresent()){
+            reviewRepository.deleteById(reviewId);
+            return review.get();
+        } else {
+            throw new InformationNotFoundException("Either restaurant with id of " + restaurantId + ", review with id " + reviewId + ", or user with id of " + userId + " not found");
         }
     }
 }
