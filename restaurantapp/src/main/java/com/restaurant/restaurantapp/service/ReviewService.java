@@ -11,7 +11,9 @@ import com.restaurant.restaurantapp.repository.ReviewRepository;
 import com.restaurant.restaurantapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -59,4 +61,35 @@ public class ReviewService {
         }
     }
 
+    public Review getRestaurantReview(Long restaurantId, Long reviewId){
+        LOGGER.info("calling getRestaurantReview from service");
+        Optional<Restaurant> restaurant = restaurantRepository.findById(restaurantId);
+        if( restaurant.isPresent()){
+            Optional<Review> review = reviewRepository.findById(reviewId);
+            if(review.isPresent()){
+                return review.get();
+            } else {
+                throw new InformationNotFoundException("review with id " + reviewId  + " does not exist");
+            }
+        } else {
+            throw new InformationNotFoundException("restaurant with id " + restaurantId + " not found");
+        }
+    }
+
+//    public Review updateRestaurantReview( Long restaurantId, Long reviewId, Long userId, Review reviewObject){
+//        LOGGER.info("calling updateRestaurantReview from service");
+//        Optional<Restaurant> restaurant = restaurantRepository.findById(restaurantId);
+//        Optional<User> user = userRepository.findById(userId);
+//        Optional<Review> review = reviewRepository.findById(reviewId);
+//        if( restaurant.isPresent() && review.isPresent()){
+//            review.get().setRestaurant(restaurant.get());
+//            review.get().setComment(reviewObject.getComment());
+//            review.get().setRating(reviewObject.getRating());
+//            review.get().setUser(user.get());
+//            return reviewRepository.save(review.get());
+//
+//        } else {
+//            throw new InformationNotFoundException("Either restaurant with id of " + restaurantId + "or review with id " + reviewId + " not found");
+//        }
+//    }
 }
