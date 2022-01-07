@@ -23,13 +23,13 @@ public class CategoryController {
     private static final Logger LOGGER = Logger.getLogger(CategoryController.class.getName());
 
     @Autowired
-    public void setCategoryService(CategoryService categoryService){
+    public void setCategoryService(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
-//  http://localhost:9092/api/categories
+    //  http://localhost:9092/api/categories
     @GetMapping("/categories")
-    public List<Category> getCategories(){
+    public List<Category> getCategories() {
         LOGGER.info("calling getCategories method from controller");
         return categoryService.getCategories();
     }
@@ -43,7 +43,7 @@ public class CategoryController {
 
     //  http://localhost:9092/api/categories
     @PostMapping("/categories")
-    public Category createCategory(@RequestBody Category categoryObject){
+    public Category createCategory(@RequestBody Category categoryObject) {
         LOGGER.info("calling createCategory from service");
         return categoryService.createCategory(categoryObject);
     }
@@ -67,7 +67,7 @@ public class CategoryController {
     @PostMapping("/categories/{categoryId}/restaurants")
     public Restaurant createCategoryRestaurant(
             @PathVariable(value = "categoryId") Long categoryId,
-            @RequestBody Restaurant restaurantObject){
+            @RequestBody Restaurant restaurantObject) {
         LOGGER.info("calling createCategoryRestaurant method from controller");
         return categoryService.createCategoryRestaurant(categoryId, restaurantObject);
     }
@@ -77,35 +77,16 @@ public class CategoryController {
     public Restaurant getCategoryRestaurant(
             @PathVariable(value = "categoryId") Long categoryId,
             @PathVariable(value = "restaurantId") Long restaurantId
-    ){
+    ) {
         LOGGER.info("calling getCategoryRestaurant from controller");
         return categoryService.getCategoryRestaurant(categoryId, restaurantId);
     }
 
-//    http://localhost:9092/api/categories/1/restaurants
+    //    http://localhost:9092/api/categories/1/restaurants
     @GetMapping("/categories/{categoryId}/restaurants")
-    public List<Restaurant> getCategoryRestaurants( @PathVariable(value = "categoryId") Long categoryId){
+    public List<Restaurant> getCategoryRestaurants(@PathVariable(value = "categoryId") Long categoryId) {
         LOGGER.info("calling getCategoryRestaurant from controller");
         return categoryService.getCategoryRestaurants(categoryId);
     }
-//
-//
-//    @PutMapping("/categories/{categoryId}/restaurants/{restaurantId}")
-//    public Restaurant updateCategoryRestaurant(@PathVariable(value = "categoryId") Long categoryId,
-//                                   @PathVariable(value = "restaurantId") Long restaurantId,
-//                                   @RequestBody Restaurant restaurantObject){
-//        LOGGER.info("calling updateCategoryRestaurant from controller");
-//        return categoryService.updateCategoryRestaurant(categoryId, restaurantId, restaurantObject);
-//    }
-//
-//    @DeleteMapping("/categories/{categoryId}/restaurants/{restaurantId}")
-//    public Restaurant deleteCategoryRestaurant(@PathVariable(value = "categoryId") Long categoryId,
-//                                   @PathVariable(value = "restaurantId") Long restaurantId){
-//        LOGGER.info("calling deleteCategoryRestaurant from controller");
-//        return categoryService.deleteCategoryRestaurant(categoryId, restaurantId);
-//    }
-
-
-
 }
 
