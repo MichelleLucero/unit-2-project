@@ -15,7 +15,7 @@ Restaurant review App, which allows users to see reviews of a restaurant or add 
 Once our team selected to create a back-end for a restaurant review app, we proceeded to create user stories. We informally developed our plan of action, which included pair programming and managing git workflow. Then, we created an Entity Relationship Diagram (ERD) of our database to include categories, restaurants, reviews, and users. 
 Once we finished drafting our endpoints based on REST conventions, we created a new Spring project with the models and relationships defined in the ERD.
 We then implemented the endpoints using Controllers, Services, and Repositories.
-After completing our endpoints, we tested them using Postman to verify that we obtained the expected results. Finally, we restructured our code to adhere to the MVC design pattern.    
+After completing our endpoints, we tested them using Postman to verify that we obtained the expected results. Finally, we refactored our code to adhere to the MVC design pattern.    
 
 ### User Stories
 
