@@ -8,6 +8,7 @@ Restaurant review App, which allows users to see reviews of a restaurant or add 
 * Spring 
 * PostgreSQL
 * Maven
+* Apache Tomcat
 
 ## Planning
 ### Approach
